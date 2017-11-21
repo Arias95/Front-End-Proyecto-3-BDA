@@ -1,0 +1,39 @@
+var path = require('path');
+var webpack = require('webpack');
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
+
+module.exports = {
+    entry: path.resolve(__dirname, "index.js"),
+    output: {
+        path: path.resolve(__dirname, 'dist'),
+        filename: 'bdaBundle.js'
+    },
+    watch: true,
+    module: {
+        rules: [
+            {
+                test: /\.woff2?$|\.ttf$|\.eot$|\.svg$/,
+                use: [{
+                    loader: "file-loader"
+                }]
+            },
+            {
+                test: /\.css$/,
+                use: ExtractTextPlugin.extract({
+                    fallback: 'style-loader',
+                    use: 'css-loader'
+                })
+            }
+        ]
+    },
+    plugins: [
+        new ExtractTextPlugin('bundle.styles.css'),
+        new webpack.ProvidePlugin({
+            // inject ES5 modules as global vars
+            $: 'jquery',
+            jQuery: 'jquery',
+            'window.jQuery': 'jquery',
+            Tether: 'tether'
+        })
+    ]
+};

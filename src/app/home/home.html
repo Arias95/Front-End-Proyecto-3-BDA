@@ -1,0 +1,118 @@
+<div class="row alert-custom">
+    <div class="col-lg-12">
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link active" data-toggle="tab" href="/home">Comprar Entradas</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="/history">Historial de compras</a>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="row alert-custom">
+    <div class="col">
+        <div class="card text-white bg-light">
+            <div class="row">
+                <div class="col welcome">
+                    <h1>Bienvenido {{usuario}}</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col welcome-btn">
+                    <button type="button" class="btn btn-secondary btn-sm" ng-click="logout()">
+                        Cerrar sesión
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+<div class="row show-hide alert-custom" ng-show="confirmDiag">
+    <div class="col">
+        <div class="alert alert-dismissible alert-warning">
+            <h4>¿Desea continuar con la compra?</h4>
+            <p>El costo total de su compra es de
+                <strong>{{total}}</strong>
+            </p>
+            <p>¿Desea realizar la compra?</p>
+            <p>
+                <button type="button" class="btn btn-secondary" ng-click="cancelConfirm()">No</button>
+                <button type="button" class="btn btn-success" ng-click="confirmPurchase()">Sí</button>
+            </p>
+        </div>
+    </div>
+</div>
+<div class="row show-hide alert-custom" ng-show="activeCart">
+    <div class="col-lg-12">
+        <div class="card border-warning">
+            <div class="card-body">
+                <h3>
+                    <i class="fa fa-shopping-cart" aria-hidden="true"></i> Comprar entradas</h3>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <table class="table table-striped table-hover table-bordered">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th>Evento</th>
+                                    <th>Precio</th>
+                                    <th>Cantidad</th>
+                                    <th>
+                                        <center>Eliminar</center>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="event in cart">
+                                    <td>{{event.name}}</td>
+                                    <td>{{event.cost}}</td>
+                                    <td>
+                                        <input class="form-control" id="inputCantidad" type="number" ng-model="event.cantidad" min="1">
+                                    </td>
+                                    <td>
+                                        <center>
+                                            <button type="button" class="btn btn-danger" ng-click="removeCart(event.id)">
+                                                <i class="fa fa-trash" aria-hidden="true"></i>
+                                            </button>
+                                        </center>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <button type="button" class="btn btn-secondary" ng-click="cancelCart()">Cancelar</button>
+                        <button type="button" class="btn btn-success" ng-click="confirm()">Comprar</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <br>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-4" ng-repeat="evento in eventos">
+        <div class="card">
+            <h3 class="card-header">{{evento.nombre}}</h3>
+            <div class="card-body">
+                <p class="card-text">{{evento.descripcion}}</p>
+                <p class="card-text">
+                    <strong>Precio: {{evento.precio}}</strong>
+                </p>
+                <button type="button" class="btn btn-primary" ng-click="addCart(evento.nombre, evento.fecha, evento.precio)">Comprar</button>
+            </div>
+            <div class="card-footer text-muted">
+                Fecha: {{evento.fecha}}
+            </div>
+        </div>
+    </div>
+</div>
