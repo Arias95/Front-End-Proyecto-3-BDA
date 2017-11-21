@@ -10,34 +10,20 @@ angular.module('bdatienda')
             });
     }])
 
-    .controller('HomeController', ['$scope', '$location', 'cartService', 'userService',
-        function ($scope, $location, cartService, userService) {
+    .controller('HomeController', ['$scope', '$location', '$http', 'cartService', 'userService', 'restService',
+        function ($scope, $location, $http, cartService, userService, restService) {
             $scope.usuario = userService.usuario;
-            console.log(userService);
+            $scope.nombre = userService.nombre;
             $scope.activeCart = false;
             $scope.cart = [];
             $scope.total = 0;
             $scope.confirmDiag = false;
-            $scope.eventos = [
-                {
-                    nombre: "Concierto mediocre",
-                    descripcion: "Para maes blancos heterosexuales que creen saber de musica.",
-                    fecha: "2/12/2017",
-                    precio: 40000
-                },
-                {
-                    nombre: "Concierto decente",
-                    descripcion: "Solo pasa una vez al año y vamos a cobrar un riñón.",
-                    fecha: "3/12/2017",
-                    precio: 120000
-                },
-                {
-                    nombre: "Perreo Fest",
-                    descripcion: "Lo que realmente promete y usted quiere ir de fijo.",
-                    fecha: "4/12/2017",
-                    precio: 20000
-                }
-            ];
+            $scope.eventos = [];
+            var urlEvents = restService + '/events/getAllEvents';
+            
+            $http.get(urlEvents).then(function (response) {
+                $scope.eventos = response.data.data;
+            });
 
             $scope.addCart = function (nombre, fecha, precio) {
                 $scope.activeCart = true;
@@ -45,7 +31,7 @@ angular.module('bdatienda')
                     raiseAmount(nombre);
                 } else {
                     $scope.cart.push({
-                        name: nombre,
+                        nombre: nombre,
                         cantidad: 1,
                         cost: precio
                     });
@@ -107,8 +93,20 @@ angular.module('bdatienda')
 
             $scope.confirmPurchase = function () {
                 cartService = $scope.cart;
-                // TODO: HTTP Post al server
-                $location.path('/done');
+                var today = Date();
+                var url = restService + '/order/newOrder';
+                var compra = {
+                    cliente: $scope.nombre,
+                    articulos: $scope.cart,
+                    total: $scope.total,
+                    fecha: today
+                };
+                $http.post(url, compra).then(function (response) {
+                    if (response.data.Status == 1) {
+                        $location.path('/done');
+                    }
+                });
+                
             }
 
             $scope.logout = function () {

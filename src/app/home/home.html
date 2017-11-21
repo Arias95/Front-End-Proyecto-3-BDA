@@ -15,7 +15,7 @@
         <div class="card text-white bg-light">
             <div class="row">
                 <div class="col welcome">
-                    <h1>Bienvenido {{usuario}}</h1>
+                    <h1>Bienvenido {{nombre}}</h1>
                 </div>
             </div>
             <div class="row">
@@ -66,7 +66,7 @@
                             </thead>
                             <tbody>
                                 <tr ng-repeat="event in cart">
-                                    <td>{{event.name}}</td>
+                                    <td>{{event.nombre}}</td>
                                     <td>{{event.cost}}</td>
                                     <td>
                                         <input class="form-control" id="inputCantidad" type="number" ng-model="event.cantidad" min="1">
@@ -104,14 +104,13 @@
         <div class="card">
             <h3 class="card-header">{{evento.nombre}}</h3>
             <div class="card-body">
-                <p class="card-text">{{evento.descripcion}}</p>
                 <p class="card-text">
                     <strong>Precio: {{evento.precio}}</strong>
                 </p>
-                <button type="button" class="btn btn-primary" ng-click="addCart(evento.nombre, evento.fecha, evento.precio)">Comprar</button>
+                <button type="button" class="btn btn-primary" ng-click="addCart(evento.nombre, evento.fechaI, evento.precio)">Comprar</button>
             </div>
             <div class="card-footer text-muted">
-                Fecha: {{evento.fecha}}
+                Fecha: {{evento.fechaI}}
             </div>
         </div>
     </div>

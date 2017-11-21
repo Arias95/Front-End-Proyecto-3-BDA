@@ -6,29 +6,16 @@ angular.module('bdatienda')
         });
     }])
 
-    .controller('HistoryController', ['$scope', '$location', 'userService',
-        function ($scope, $location, userService) {
-            $scope.history = [
-                {
-                    fecha: "11-11-2017",
-                    total: 3000,
-                    productos: [
-                        {
-                            nombre: "Thor"
-                        }
-                    ]
-                },
-                {
-                    fecha: "11-11-2017",
-                    total: 53000,
-                    productos: [
-                        {
-                            nombre: "Concierto de Incubus"
-                        },
-                        {
-                            nombre: "Thor"
-                        }
-                    ]
-                }
-            ];
+    .controller('HistoryController', ['$scope', '$location', '$http', 'userService', 'restService',
+        function ($scope, $location, $http, userService, restService) {
+            $scope.history = [];
+            $scope.nombre = userService.nombre;
+            var url = restService + '/order/getOrderbyUser';
+            var user = {
+                nombre: $scope.nombre
+            };
+
+            $http.post(url, user).then(function (response) {
+                $scope.history = response.data.data;
+            });
         }]);
