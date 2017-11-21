@@ -1,0 +1,38 @@
+<div class="row alert-custom">
+        <div class="col-lg-4">
+            <div class="list-group">
+                <a href="/admin" class="list-group-item  list-group-item-action">
+                    Historial de compras
+                </a>
+                <a href="/products" class="list-group-item list-group-item-action">Productos adquiridos
+                </a>
+                <a href="/top-five" class="list-group-item list-group-item-action active">Top 5 productos
+                </a>
+                <a href="/common" class="list-group-item list-group-item-action">Productos comunes con cliente
+                </a>
+                <a href="/add" class="list-group-item list-group-item-action">Agregar Concierto
+                </a>
+                <a href="/addMovie" class="list-group-item list-group-item-action">Agregar Película
+                </a>
+                <a href="/" class="list-group-item list-group-item-action">Cerrar Sesión
+                </a>
+            </div>
+        </div>
+        <div class="col-lg-8">
+            <div class="row alert-custom">
+                <div class="col">
+                    <h1>Top 5 Productos adquiridos</h1>
+                </div>
+            </div>
+            <div class="row alert-custom" ng-repeat="product in products | limitTo: 5">
+                <div class="col">
+                    <div class="card">
+                        <h3 class="card-header">Cliente: {{product.nombre}}</h3>
+                        <div class="card-body">
+                            <p>Cantidad: {{product.cantidad}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

@@ -1,0 +1,57 @@
+<div class="row alert-custom">
+    <div class="col-lg-4">
+        <div class="list-group">
+            <a href="/admin" class="list-group-item  list-group-item-action">
+                Historial de compras
+            </a>
+            <a href="/products" class="list-group-item list-group-item-action">Productos adquiridos
+            </a>
+            <a href="/top-five" class="list-group-item list-group-item-action">Top 5 productos
+            </a>
+            <a href="/common" class="list-group-item list-group-item-action">Productos comunes con cliente
+            </a>
+            <a href="/add" class="list-group-item list-group-item-action">Agregar Concierto
+            </a>
+            <a href="/addMovie" class="list-group-item list-group-item-action active">Agregar Película
+            </a>
+            <a href="/" class="list-group-item list-group-item-action">Cerrar Sesión
+            </a>
+        </div>
+    </div>
+    <div class="col-lg-8">
+        <div class="row alert-custom">
+            <div class="col">
+                <div class="card">
+                    <h3 class="card-header">Agregar Película</h3>
+                    <div class="card-body">
+                        <form>
+                            <div class="form-group">
+                                <label for="name">Nombre</label>
+                                <input class="form-control" id="name" placeholder="Nombre" type="text" ng-model="name">
+                            </div>
+                            <div class="form-group">
+                                <label for="place">Cadena</label>
+                                <input class="form-control" id="place" placeholder="Cadena" type="text" ng-model="place">
+                            </div>
+                            <div class="form-group">
+                                <label for="dateI">Fecha</label>
+                                <input class="form-control" id="dateI" placeholder="Fecha Inicial" type="date" ng-model="fechaI">
+                            </div>
+                            <div class="form-group">
+                                <label for="age">Edad Mínima</label>
+                                <input class="form-control" id="age" placeholder="Edad" type="number" min="1" ng-model="age">
+                            </div>
+                            <div class="form-group">
+                                <label for="price">Precio</label>
+                                <input class="form-control" id="price" placeholder="Precio" type="number" min="1" ng-model="price">
+                            </div>
+                            <div class="form-group">
+                                <button type="button" class="btn btn-primary" ng-click="addMovie()">Agregar Película</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

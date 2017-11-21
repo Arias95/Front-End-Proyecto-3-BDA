@@ -1,10 +1,10 @@
 <div class="row alert-custom">
     <div class="col-lg-4">
         <div class="list-group">
-            <a href="/admin" class="list-group-item  list-group-item-action active">
+            <a href="/admin" class="list-group-item  list-group-item-action">
                 Historial de compras
             </a>
-            <a href="/products" class="list-group-item list-group-item-action">Productos adquiridos
+            <a href="/products" class="list-group-item list-group-item-action active">Productos adquiridos
             </a>
             <a href="/top-five" class="list-group-item list-group-item-action">Top 5 productos
             </a>
@@ -19,28 +19,18 @@
         </div>
     </div>
     <div class="col-lg-8">
-        <div class="row">
+        <div class="row alert-custom">
             <div class="col">
-                <div class="card">
-                    <h3 class="card-header">Historial de compras de un cliente</h3>
-                    <div class="card-body">
-                        <form class="form-inline">
-                            <input class="form-control mr-sm-2" placeholder="Buscar Usuario" type="text" ng-model="user">
-                            <button class="btn btn-secondary my-2 my-sm-0" ng-click="search()">
-                                <i class="fa fa-search" aria-hidden="true"></i>
-                            </button>
-                        </form>
-                    </div>
-                </div>
+                <h1>Productos adquridos</h1>
             </div>
         </div>
-        <div class="row alert-custom show-hide" ng-show="activeUser" ng-repeat="element in history">
+        <div class="row alert-custom" ng-repeat="product in products">
             <div class="col">
                 <div class="card">
-                    <h3 class="card-header">Fecha: {{element.fecha}}</h3>
+                    <h3 class="card-header">Cliente: {{product.cliente}}</h3>
                     <div class="card-body">
                         <ul class="list-group">
-                            <li class="list-group-item" ng-repeat="event in element.productos">
+                            <li class="list-group-item" ng-repeat="event in product.productos">
                                 {{event.nombre}}
                             </li>
                         </ul>

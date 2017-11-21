@@ -14,13 +14,19 @@ angular.module('bdatienda')
         function ($scope, $location, $http, cartService, userService, restService) {
             $scope.usuario = userService.usuario;
             $scope.nombre = userService.nombre;
-            $scope.activeCart = false;
-            $scope.cart = [];
+            console.log(cartService);
+            if (cartService.length != 0) {
+                $scope.activeCart = true;
+                $scope.cart = cartService;
+            } else {
+                $scope.activeCart = false;
+                $scope.cart = [];
+            }
             $scope.total = 0;
             $scope.confirmDiag = false;
             $scope.eventos = [];
             var urlEvents = restService + '/events/getAllEvents';
-            
+
             $http.get(urlEvents).then(function (response) {
                 $scope.eventos = response.data.data;
             });
@@ -106,11 +112,13 @@ angular.module('bdatienda')
                         $location.path('/done');
                     }
                 });
-                
+
             }
 
             $scope.logout = function () {
                 userService.usuario = "";
+                cartService = $scope.cart[0];
+                console.log(cartService);
                 $location.path('/');
             }
         }]);

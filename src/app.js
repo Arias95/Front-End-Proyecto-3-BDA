@@ -1,6 +1,7 @@
 angular.module('bdatienda', [
     'ngRoute',
     'ngAnimate',
+    'ngCookies',
     'cartService',
     'userService',
     'restService'

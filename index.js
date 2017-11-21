@@ -4,6 +4,7 @@ require('jquery');
 require('angular'); // AngularJS include.
 require('angular-animate');
 require('angular-route');
+require('angular-cookies');
 
 require('./src/app'); // Main AngularJS landing point.
 require('./src/app/home/home');

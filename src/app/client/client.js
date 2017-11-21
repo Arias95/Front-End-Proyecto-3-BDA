@@ -10,11 +10,11 @@ angular.module('bdatienda')
         });
     }])
 
-    .controller('ClientController', ['$scope', '$location', '$http', 'userService', 'restService',
-        function ($scope, $location, $http, userService, restService) {
-
+    .controller('ClientController', ['$scope', '$location', '$http', 'userService', 'restService', 'cartService',
+        function ($scope, $location, $http, userService, restService, cartService) {
+            
             $scope.login = function () {
-
+                console.log(cartService);
                 var url = restService + '/users/loginClient';
                 var usr = {
                     id: $scope.username,
@@ -27,6 +27,8 @@ angular.module('bdatienda')
                         userService.usuario = response.data.id;
                         userService.nombre = response.data.nombre;
                         $location.path('/home');
+                    } else if (response.data.Status == "2") {
+                        $location.path('/admin');
                     } else {
                         alert("Usuario o contraseña incorrecta.");
                     }
