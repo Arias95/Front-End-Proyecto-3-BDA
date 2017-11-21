@@ -2,7 +2,8 @@ angular.module('bdatienda', [
     'ngRoute',
     'ngAnimate',
     'cartService',
-    'userService'
+    'userService',
+    'restService'
 ])
 
     .config(['$httpProvider', function ($httpProvider) {

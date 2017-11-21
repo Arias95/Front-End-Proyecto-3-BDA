@@ -1,0 +1,46 @@
+<div class="row alert-custom">
+    <div class="col-lg-4">
+        <div class="list-group">
+            <a href="/admin" class="list-group-item  list-group-item-action active">
+                Historial de compras
+            </a>
+            <a href="#" class="list-group-item list-group-item-action">Productos adquiridos
+            </a>
+            <a href="#" class="list-group-item list-group-item-action">Top 5 productos
+            </a>
+            <a href="#" class="list-group-item list-group-item-action">Productos comunes con cliente
+            </a>
+        </div>
+    </div>
+    <div class="col-lg-8">
+        <div class="row">
+            <div class="col">
+                <div class="card">
+                    <h3 class="card-header">Historial de compras de un cliente</h3>
+                    <div class="card-body">
+                        <form class="form-inline">
+                            <input class="form-control mr-sm-2" placeholder="Buscar Usuario" type="text" ng-model="user">
+                            <button class="btn btn-secondary my-2 my-sm-0" ng-click="search()">
+                                <i class="fa fa-search" aria-hidden="true"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row alert-custom show-hide" ng-show="activeUser" ng-repeat="element in history">
+            <div class="col">
+                <div class="card">
+                    <h3 class="card-header">Fecha: {{element.fecha}}</h3>
+                    <div class="card-body">
+                        <ul class="list-group">
+                            <li class="list-group-item" ng-repeat="event in element.productos">
+                                {{event.nombre}}
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

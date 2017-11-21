@@ -19,7 +19,7 @@ Luego puede ejecutar el front-end con live-server:
 ~~~~
 live-server
 ~~~~
-El servidor estará corriendo en 127.0.0.1:8080
+El servidor estará corriendo en 127.0.0.1:8080.
 Lo anterior ejecutará Webpack en watchmode, lo que significa que estará en constante ejecución, recompilando cada vez que detecte algún cambio, si no desea que eso pase, desactive la bandera watch del webpack.config.js:
 ```javascript
 module.exports = {
@@ -28,6 +28,6 @@ module.exports = {
         path: path.resolve(__dirname, 'dist'),
         filename: 'bdaBundle.js'
     },
-    watch: true,
+    watch: false,
     ...
 ```

@@ -13,6 +13,7 @@ angular.module('bdatienda')
     .controller('HomeController', ['$scope', '$location', 'cartService', 'userService',
         function ($scope, $location, cartService, userService) {
             $scope.usuario = userService.usuario;
+            console.log(userService);
             $scope.activeCart = false;
             $scope.cart = [];
             $scope.total = 0;
